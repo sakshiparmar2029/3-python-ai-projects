@@ -85,7 +85,7 @@ input, textarea {
 
 # ---------------- SIDEBAR ---------------- #
 with st.sidebar:
-    st.markdown("<h2>📌 Overview</h2>", unsafe_allow_html=True)
+    st.markdown("<h2> Overview</h2>", unsafe_allow_html=True)
     st.markdown("""
     **AI-Powered Resume Review Tool**
     - Resume clarity & impact  
@@ -93,7 +93,7 @@ with st.sidebar:
     - Job-role alignment  
     """)
     st.markdown("---")
-    st.markdown("👨‍💻 **Python AI Internship Project**")
+    st.markdown(" **Python AI Internship Project**")
 
 # ---------------- HEADER ---------------- #
 st.markdown("""
@@ -120,12 +120,12 @@ with col1:
 with col2:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
     job_role = st.text_input(
-        "🎯 Target Job Role (optional)",
+        "Target Job Role (optional)",
         placeholder="e.g. Data Analyst, Software Engineer"
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
-analyze = st.button("🔍 Analyze Resume", use_container_width=True)
+analyze = st.button("Analyze Resume", use_container_width=True)
 
 # ---------------- FUNCTIONS ---------------- #
 def extract_text_from_pdf(pdf_file):
@@ -143,15 +143,15 @@ def extract_text_from_file(file):
 # ---------------- ANALYSIS ---------------- #
 if analyze:
     if not uploaded_file:
-        st.warning("⚠️ Please upload a resume first.")
+        st.warning(" Please upload a resume first.")
         st.stop()
 
-    with st.spinner("Analyzing resume... ⏳"):
+    with st.spinner("Analyzing resume... "):
         try:
             resume_text = extract_text_from_file(uploaded_file)
 
             if not resume_text.strip():
-                st.error("❌ The uploaded file is empty or unreadable.")
+                st.error("The uploaded file is empty or unreadable.")
                 st.stop()
 
             prompt = f"""
@@ -180,15 +180,15 @@ if analyze:
                 max_tokens=1000
             )
 
-            st.success("✅ Analysis Completed")
+            st.success("Analysis Completed")
 
             st.markdown("<div class='card'>", unsafe_allow_html=True)
-            st.markdown("## 📊 Resume Feedback")
+            st.markdown("## Resume Feedback")
             st.markdown(response.choices[0].message.content)
             st.markdown("</div>", unsafe_allow_html=True)
 
         except Exception as e:
-            st.error(f"❌ Error occurred: {str(e)}")
+            st.error(f"Error occurred: {str(e)}")
 
 # ---------------- FOOTER ---------------- #
 st.markdown("""
